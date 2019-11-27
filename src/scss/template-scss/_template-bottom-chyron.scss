@@ -1,0 +1,127 @@
+.bottom-chyron {
+  z-index: 10;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: $bottomChyronHeight;
+  box-sizing: border-box;
+  padding: 4px $rightSectionWidth 0 $leftMenuWidth;
+  transition: padding $menuAnimationSpeed;
+  transition-timing-function: ease-out;
+}
+
+.wrapper.toggle-left-menu-hide .bottom-chyron {
+  padding-left: 0px;
+}
+
+.wrapper.toggle-right-menu-hide .bottom-chyron {
+  padding-right: 0px;
+}
+
+.bottom-chyron .news-scroller {
+  display: grid;
+  grid-template-columns: 60px auto 50px;
+  // width: calc(100% - 34px);
+  height: $bottomChyronHeight;
+  margin: 0 auto;
+  background-color: $secondaryColor;
+  border-top: 1px solid lighten($primaryColor, 60%);
+  // border-top: 2px solid $primaryBackgroundColor;
+  // border-right: 1px solid $primaryBorderColor;
+  // border-left: 1px solid $primaryBorderColor;
+
+  > div.header {
+    grid-column: 1/2;
+    color: $secondaryColor;
+    text-transform: uppercase;
+    padding: 0.7rem 0.65rem 0 0.65rem;
+    font-size: 0.9rem;
+    background-color: $primaryColor;
+  }
+}
+
+.bottom-chyron .news-scroller > .scroller {
+  grid-column: 2/3;
+  overflow: hidden;
+  position: relative;
+
+  ul {
+    li {
+      height: 100%;
+      position: absolute;
+      top: -45px;
+      font-size: 0.9rem;
+      padding: 0.65rem 0.8rem 0 0.4rem;
+      text-overflow: ellipsis;
+      display: block;
+      overflow: hidden;
+      white-space: nowrap;
+      &:first-child {
+        top: 0px;
+      }
+    }
+  }
+}
+
+.news-ticker-slide-in {
+  animation-name: ticker-slide-in;
+  animation-duration: 0.95s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+.news-ticker-slide-out {
+  animation-name: ticker-slide-out;
+  animation-duration: 0.95s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes ticker-slide-in {
+  0% {
+    top: -45px;
+  }
+
+  100% {
+    top: 0px;
+  }
+}
+
+@keyframes ticker-slide-out {
+  0% {
+    top: 0px;
+  }
+
+  75% {
+    opacity: 0;
+  }
+
+  100% {
+    top: 45px;
+  }
+}
+
+.bottom-chyron .news-scroller > .scroll-page-up {
+  grid-column: 3/4;
+  font-size: 2.5em;
+  text-align: center;
+  border-left: 1px solid $primaryBorderColor;
+  background-color: darken($secondaryColor, 1%);
+  cursor: pointer;
+  .fa {
+    color: $primaryColor;
+    margin-top: -2px;
+    display: block;
+  }
+  &:hover .fa {
+    color: lighten($primaryColor, 25%);
+  }
+}
+
+@media only screen and (max-width: $mediaBreakPointMedium) {
+  .bottom-chyron {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}

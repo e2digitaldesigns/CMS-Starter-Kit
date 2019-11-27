@@ -1,0 +1,86 @@
+/////////////////////////////
+//SETTINGS///////////////////
+/////////////////////////////
+.right-nav-pill-content.right-nav-pill-content-settings {
+  height: calc(100% - 65px);
+  h4 {
+    width: 250px;
+    font-size: 0.9em;
+    font-weight: 400;
+    padding-bottom: 8px;
+    border-bottom: 1px solid $primaryBorderColor;
+    margin: 10px 0 5px 0;
+    clear: both;
+  }
+  ul.setting-list {
+    list-style: none;
+    padding-bottom: 15px;
+    width: 250px;
+    > li {
+      width: 100%;
+      border-top: 1px solid $primaryBorderColor;
+      padding: 10px 0 15px 0;
+      color: $primaryFontColor;
+      font-size: 0.75em;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      clear: both;
+      &:first-child {
+        border-top: 0;
+      }
+    }
+  }
+}
+
+.setting-list > li > span.switch-holder {
+  float: right;
+  padding: 0px 5px 0px 0;
+  > label.switch {
+    position: relative;
+    display: inline-block;
+    width: 45px;
+    height: 18px;
+    input {
+      display: none;
+    }
+  }
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: darken($secondaryColor, 20%);
+  transition: 0.4s;
+  border-radius: 60px;
+
+  &:before {
+    position: absolute;
+    content: "";
+    height: 10px;
+    width: 10px;
+    left: 4px;
+    bottom: 4px;
+    background-color: $secondaryColor;
+    transition: 0.4s;
+    border-radius: 60px;
+  }
+}
+
+input:checked + .slider {
+  background-color: darken($primaryColor, 5%);
+  &:before {
+    transform: translateX(27px);
+  }
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #000;
+}
+
+/////////////////////////////
+//SETTINGS///////////////////
+/////////////////////////////

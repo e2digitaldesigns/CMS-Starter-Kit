@@ -1,0 +1,7 @@
+/build
+/node_modules
+helper.txt
+
+.env
+.env.development
+.env.production

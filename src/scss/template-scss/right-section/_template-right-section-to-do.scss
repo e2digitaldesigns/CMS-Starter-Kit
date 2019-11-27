@@ -1,0 +1,107 @@
+/////////////////////////////
+//TO DO LIST/////////////////
+/////////////////////////////
+
+.right-nav-pill-content.right-nav-pill-content-to-do-list {
+  height: calc(100% - 180px);
+  display: block;
+}
+
+div.to-do-list {
+  overflow: hidden;
+  ul {
+    list-style: none;
+    li {
+      min-height: 50px;
+      list-style: none;
+      position: relative;
+      padding: 3px 0px 3px 40px;
+      background: darken($headerNavBgColor, 4%);
+      font-size: 12px;
+      transition: 0.2s;
+      margin-bottom: 1px;
+      border-bottom: 1px solid $primaryBorderColor;
+      word-wrap: break-word;
+      white-space: pre-line;
+      position: relative;
+
+      display: flex;
+      &:nth-child(even) {
+        background: darken($headerNavBgColor, 8%);
+      }
+      > div.right-to-do-list-message {
+        flex: 6;
+        cursor: pointer;
+        padding-top: 0.3rem;
+      }
+      &:hover {
+        background: $secondaryColor;
+      }
+      &:not(.checked)::before {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+        background-color: $primaryColor;
+        top: 14px;
+        left: 10px;
+        height: 4px;
+        width: 4px;
+      }
+      &.checked {
+        background: darken($headerNavBgColor, 20%);
+        text-decoration: line-through;
+        &:before {
+          content: "";
+          position: absolute;
+          border-color: $primaryColor;
+          border-style: solid;
+          border-width: 0 2px 2px 0;
+          top: 5px;
+          left: 16px;
+          transform: rotate(45deg);
+          height: 12px;
+          width: 5px;
+        }
+      }
+      div.todo-close {
+        flex: 1;
+        color: lighten($primaryFontColor, 30%);
+        text-align: center;
+        cursor: pointer;
+        padding-top: 5px;
+        &:hover {
+          color: $secondaryFontColor;
+          background-color: lighten($primaryColor, 10%);
+        }
+      }
+    }
+  }
+}
+
+div.to-do-list-message-form-holder {
+  width: calc(#{$rightSectionWidth} - 16px);
+  height: 100px;
+  position: absolute;
+  bottom: 5px;
+  border-top: 1px solid $primaryColor;
+  background-color: darken($headerNavBgColor, 5%);
+  overflow: hidden;
+  > form {
+    > textarea {
+      width: 100%;
+      height: 95px;
+      // color: $fontColorPrimary;
+      font-size: 0.95rem;
+      font-weight: 300;
+      outline: 0;
+      resize: none;
+      border: 0;
+      padding: 0.25rem;
+      margin-top: 5px;
+      background-color: transparent;
+    }
+  }
+}
+/////////////////////////////
+//TO DO LIST/////////////////
+/////////////////////////////

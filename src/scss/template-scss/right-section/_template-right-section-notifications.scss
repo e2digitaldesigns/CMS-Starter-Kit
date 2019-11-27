@@ -1,0 +1,43 @@
+/////////////////////////////
+//NOTIFICATIONS//////////////
+/////////////////////////////
+.right-nav-pill-content.right-nav-pill-content-notifications {
+  height: calc(100% - 65px);
+  ul {
+    list-style: none;
+    > li {
+      //   width: calc(100% - 10px);
+      min-height: 60px;
+      display: grid;
+      grid-template-columns: 25px auto;
+      border-bottom: 1px solid $primaryBorderColor;
+      padding: 10px 5px;
+      cursor: pointer;
+      > .icon {
+        color: lighten($primaryColor, 20%);
+      }
+      > .info {
+        div {
+          margin-bottom: 2px;
+        }
+        > .title {
+          font-size: 0.9em;
+          clear: both;
+        }
+        > .desc {
+          font-size: 0.8em;
+        }
+        > .date {
+          color: lighten($primaryFontColor, 20%);
+          font-size: 0.65em;
+        }
+      }
+      &:hover {
+        background-color: $secondaryColor;
+      }
+    }
+  }
+}
+/////////////////////////////
+//NOTIFICATIONS//////////////
+/////////////////////////////

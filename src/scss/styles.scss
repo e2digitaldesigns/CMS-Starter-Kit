@@ -1,0 +1,54 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+.clear-fix {
+  height: 0;
+  line-height: 0;
+  clear: both;
+}
+
+@import "./fonts";
+@import "./global-mixins";
+@import "./global-assets";
+
+//UI
+@import "./ui-scss/color-theme";
+@import "./ui-scss/coloring";
+@import "./ui-scss/buttons";
+@import "./ui-scss/cards";
+@import "./ui-scss/margin-padding";
+@import "./ui-scss/paginate";
+@import "./ui-scss/pills";
+@import "./ui-scss/tables";
+@import "./ui-scss/forms";
+
+//TEMPLATE
+@import "./template-scss/template-theme";
+@import "./template-scss/template-header";
+@import "./template-scss/template-right-section";
+@import "./template-scss/template-bottom-chyron";
+@import "./template-scss/template-left-menu";
+@import "./template-scss/template-main-content";
+
+//COMPONENTS
+@import "./components/client-profile.scss";
+
+body {
+  height: 100vh;
+  position: relative;
+  font-family: Roboto;
+  font-size: 16px;
+  color: $primaryFontColor;
+  background: $primaryBackgroundColor;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.wrapper {
+  height: 100vh;
+  position: relative;
+}

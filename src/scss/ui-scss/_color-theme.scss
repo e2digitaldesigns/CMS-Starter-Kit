@@ -1,0 +1,64 @@
+$statusColorOnline: #00b777;
+$statusColorOffline: #e65a5a;
+
+//////////////////////////////////////////////
+//////////////////////////////////////////////
+//////////////////////////////////////////////
+//////////////////////////////////////////////
+//////////////////////////////////////////////
+// $primaryColor: #8b06cf;
+$primaryColor: #6a059d;
+$secondaryColor: #fff;
+$tertiaryColor: #000;
+
+$primaryFontColor: #404040;
+$secondaryFontColor: #fff;
+$primaryBackgroundColor: #eee;
+$primaryBorderColor: darken($primaryBackgroundColor, 3%); //#e6e6e6
+
+//Header Nav
+$headerNavBgColor: lighten($primaryBackgroundColor, 3.9%); //#f8f8f8
+$headerNavLiBgColor: lighten($primaryBackgroundColor, 0.5%); //#efefef
+
+//Menu
+$menuBackgroundColor: whitesmoke;
+
+//Tool Tip
+$fontColorToolTip: #fff;
+$bgColorToolTip: #000;
+
+//Color Map
+$colorMap: (
+  primary: (
+    $primaryColor,
+    #fff
+  ),
+  secondary: (
+    #5a5a5a,
+    #fff
+  ),
+  success: (
+    #4acf06,
+    #fff
+  ),
+  danger: (
+    #bd2130,
+    #fff
+  ),
+  warning: (
+    #f7cf02,
+    #212121
+  ),
+  info: (
+    #42d1f5,
+    #fff
+  ),
+  light: (
+    #dadada,
+    #212121
+  ),
+  dark: (
+    #1d2124,
+    #fff
+  )
+);

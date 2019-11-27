@@ -1,0 +1,196 @@
+@mixin headerLi($borderDirection) {
+  display: inline-block;
+  height: 59px;
+  float: left;
+  font-size: 0.85em;
+  line-height: 38px;
+  text-align: center;
+  padding: 12px 15px 0 15px;
+  border-#{$borderDirection}: 1px solid $headerNavLiBgColor;
+  cursor: pointer;
+  a {
+    color: darken($primaryFontColor, 10%);
+  }
+  &:hover {
+    background-color: $secondaryColor;
+    a {
+      color: lighten($primaryFontColor, 10%);
+    }
+  }
+}
+
+///////////////////////////////////////
+// Header Nav Bar /////////////////////
+///////////////////////////////////////
+nav.nav-bar {
+  height: $topNavHeight;
+  // min-width: 400px !important;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  display: grid;
+  grid-template-columns: 620px auto;
+  background-color: $headerNavBgColor;
+  border-bottom: 1px solid $primaryBorderColor;
+  white-space: nowrap;
+  z-index: 1000;
+
+  > ul.left-nav {
+    grid-column: 1/2;
+    list-style: none;
+    overflow: hidden;
+    > li {
+      @include headerLi(right);
+      &:hover .fa {
+        color: lighten($primaryColor, 10%);
+      }
+    }
+    li.left-toggle {
+      width: 50px;
+      font-size: 1.2em;
+      color: $primaryFontColor;
+    }
+    li.branding {
+      width: 180px;
+      font-size: 1.2rem;
+      cursor: auto;
+    }
+    li.loader {
+      cursor: auto;
+      display: none;
+    }
+    li .fa {
+      padding-right: 0.2rem;
+      color: $primaryColor;
+    }
+    span {
+      padding-left: 3px;
+    }
+  }
+  .right-nav {
+    ul {
+      grid-column: 2/3;
+      list-style: none;
+      float: right;
+      text-align: right;
+      li {
+        @include headerLi(left);
+        position: relative;
+        min-width: 60px;
+        .fa {
+          font-size: 1.25em;
+        }
+        .tool-tip {
+          display: none;
+          width: 120px;
+          text-overflow: ellipsis;
+          position: absolute;
+          top: 50px;
+          left: -30px;
+          border-radius: 0.3rem;
+          color: $fontColorToolTip;
+          background-color: $bgColorToolTip;
+          font-size: 0.8rem;
+          line-height: 1.5;
+          padding: 0.22rem;
+          z-index: 1005;
+          &:before {
+            content: "";
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 0.5rem 0.5rem 0.5rem;
+            border-color: transparent transparent $bgColorToolTip transparent;
+            position: absolute;
+            left: 52px;
+            top: -8px;
+          }
+        }
+        .notification-number {
+          background-color: $primaryColor;
+          color: $secondaryColor;
+          font-size: 0.75em;
+          line-height: 22px;
+          border-radius: 50%;
+          position: absolute;
+          top: 8px;
+          left: 6px;
+          height: 21px;
+          width: 21px;
+        }
+        &:hover {
+          .tool-tip {
+            display: block;
+          }
+        }
+      }
+    }
+  }
+}
+
+li.staff-options {
+  width: 220px;
+  position: relative;
+  > ul {
+    display: none;
+    position: absolute;
+    left: 0px;
+    top: 59px;
+    list-style: none;
+    width: 280px;
+    background: $secondaryColor;
+    border-top: 1px solid $headerNavLiBgColor;
+    border-bottom: 1px solid $primaryColor;
+    > li {
+      border-bottom: 1px solid $headerNavLiBgColor;
+      width: 100%;
+      height: auto !important;
+      padding: 5px !important;
+      text-align: left !important;
+      &:hover {
+        background-color: $headerNavBgColor !important;
+      }
+      .fa {
+        margin: 0 0.5rem;
+        color: $primaryColor;
+      }
+    }
+  }
+  &:hover {
+    ul {
+      display: block;
+    }
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  nav.right-nav > ul {
+    > li:not(.display-m) {
+      display: none;
+    }
+  }
+}
+
+@media only screen and (max-width: $mediaBreakPointMedium) {
+  nav.nav-bar {
+    display: flex;
+    ul.left-nav {
+      > li:not(.display-m) {
+        display: none;
+      }
+    }
+    nav.right-nav {
+      flex: 1;
+      width: 60px !important;
+    }
+  }
+}
+
+@media only screen and (max-width: ($rightSectionWidth + $leftMenuWidth + 50)) {
+  nav.right-nav > ul > li.staff-options {
+    display: none !important;
+  }
+}
+///////////////////////////////////////$mediaBreakPointSmall
+// Header Nav Bar /////////////////////
+///////////////////////////////////////
