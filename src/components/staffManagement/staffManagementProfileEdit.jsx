@@ -3,12 +3,11 @@ import { toast } from "react-toastify";
 import { PageTemplateHeader } from "./../utils/pageTemplate";
 import http from "../../services/httpServices";
 
-class ClientManagementProfileEdit extends Component {
+class StaffManagementProfileEdit extends Component {
   state = {
-    starterName: "",
-    clientInformation: {
+    staffInformation: {
       _id: "",
-      active: "",
+      status: "",
       name: "",
       email: ""
     }
@@ -16,11 +15,11 @@ class ClientManagementProfileEdit extends Component {
 
   async componentDidMount() {
     try {
-      const { data: clientInformation } = await http.get(
-        "/users/" + this.props.match.params.id
+      const { data: staffInformation } = await http.get(
+        "/staffManagement/" + this.props.match.params.id
       );
 
-      this.setState({ starterName: clientInformation.name, clientInformation });
+      this.setState({ starterName: staffInformation.name, staffInformation });
     } catch (ex) {
       toast.warning("Client Listing not able to load..");
     }
@@ -28,17 +27,17 @@ class ClientManagementProfileEdit extends Component {
 
   onInputChange = e => {
     e.preventDefault();
-    const clientInformation = { ...this.state.clientInformation };
-    clientInformation[e.currentTarget.name] = e.currentTarget.value;
-    this.setState({ clientInformation });
+    const staffInformation = { ...this.state.staffInformation };
+    staffInformation[e.currentTarget.name] = e.currentTarget.value;
+    this.setState({ staffInformation });
   };
 
   handleProfileFormSubmit = async e => {
     e.preventDefault();
 
-    const ci = this.state.clientInformation;
+    const ci = this.state.staffInformation;
     try {
-      const { data } = await http.put("/users/" + ci._id, { ...ci });
+      const { data } = await http.put("/staffManagement/" + ci._id, { ...ci });
       if (data.ok & (data.ok === 1)) {
         this.setState({ starterName: ci.name });
       } else {
@@ -50,11 +49,11 @@ class ClientManagementProfileEdit extends Component {
   };
 
   render() {
-    const { status, name, email } = this.state.clientInformation;
+    const { status, name, email } = this.state.staffInformation;
 
     return (
       <React.Fragment>
-        <PageTemplateHeader displayName="Client Management" />
+        <PageTemplateHeader displayName="Staff Management" />
 
         <div className="client-profile-holder">
           <div className="card m-3">
@@ -121,4 +120,4 @@ class ClientManagementProfileEdit extends Component {
   }
 }
 
-export default ClientManagementProfileEdit;
+export default StaffManagementProfileEdit;

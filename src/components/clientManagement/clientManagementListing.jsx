@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-
 import { PageTemplateHeader } from "../utils/pageTemplate";
 import Pagination from "../../common/pagination";
 import { paginate } from "../utils/paginate";
@@ -11,18 +10,17 @@ import http from "../../services/httpServices";
 class ClientManagementListing extends Component {
   state = {
     currentPage: 1,
-    pageSize: 10,
+    pageSize: 25,
     userFilter: "",
     userListing: []
   };
 
   async componentDidMount() {
     try {
-      const { data } = await http.get("users");
-      console.log(data);
-      this.setState({ userListing: data });
+      const { data: userListing } = await http.get("users");
+      this.setState({ userListing });
     } catch (ex) {
-      toast.warning("user Listing not able to load..");
+      toast.warning("User Listing not able to load..");
     }
   }
 

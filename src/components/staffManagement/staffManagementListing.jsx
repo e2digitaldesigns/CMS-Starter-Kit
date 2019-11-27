@@ -20,7 +20,7 @@ class StaffManagementListing extends Component {
       const { data: listing } = await http.get("staffManagement");
       this.setState({ listing });
     } catch (ex) {
-      toast.warning("Client Listing not able to load..");
+      toast.warning("Staff Listing not able to load..");
     }
   }
 
@@ -40,6 +40,28 @@ class StaffManagementListing extends Component {
       filter: e.currentTarget.value.toLowerCase(),
       currentPage: 1
     });
+  };
+
+  handleResetPasswordLink = index => {
+    console.log("handleResetPasswordLink");
+  };
+
+  handleStatusChange = async index => {
+    const listing = this.state.listing;
+    listing[index].status = listing[index].status === true ? false : true;
+
+    try {
+      const { data } = await http.put(
+        "staffManagement/status/" + listing[index]._id,
+        {
+          status: listing[index].status
+        }
+      );
+      console.log(data);
+      this.setState({ listing });
+    } catch (ex) {
+      toast.warning("User status error...");
+    }
   };
 
   render() {
@@ -88,9 +110,15 @@ class StaffManagementListing extends Component {
 
                       <div className="table-options">
                         <Link
-                          to={`/console/staff-management/staff-profile/${s.staff_id}`}
+                          to={`/console/staff-management/staff-profile-edit/${s._id}`}
                         >
                           Edit
+                        </Link>{" "}
+                        |{" "}
+                        <Link
+                          to={`/console/staff-management/staff-profile/${s._id}`}
+                        >
+                          View
                         </Link>{" "}
                         |{" "}
                         <span

@@ -49,7 +49,7 @@ $rightContentUlHeight: 30px;
   width: calc(#{$rightSectionWidth} - 16px);
   height: calc(100% - #{$rightContentUlHeight});
   position: absolute;
-  left: -900px;
+  left: -2000px; //450
   &.active {
     left: 8px;
   }
@@ -92,9 +92,14 @@ $rightContentUlHeight: 30px;
   left: 8px;
 }
 
+.tab-content-in {
+  z-index: 195;
+}
+
 .tab-content-out {
   animation-name: tab-content-out;
   left: -$rightSectionWidth;
+  z-index: 190;
 }
 
 @keyframes tab-content-in {

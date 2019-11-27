@@ -8,7 +8,10 @@ import ClientManagementProfileEdit from "./clientManagement/clientManagementProf
 import ClientManagementNew from "./clientManagement/clientManagementNew";
 import internalMessaging from "./internalMessaging/internalMessaging";
 
+import StaffManagementNew from "./staffManagement/staffManagementProfileNew";
 import StaffManagementListing from "./staffManagement/staffManagementListing";
+import StaffManagementProfile from "./staffManagement/staffManagementProfile";
+import StaffManagementProfileEdit from "./staffManagement/staffManagementProfileEdit";
 
 class applicationRouter extends Component {
   render() {
@@ -47,8 +50,26 @@ class applicationRouter extends Component {
 
           <Route
             exact
+            path="/console/staff-management/staff-new"
+            component={StaffManagementNew}
+          />
+
+          <Route
+            exact
             path="/console/staff-management/staff-listing"
             component={StaffManagementListing}
+          />
+
+          <Route
+            exact
+            path="/console/staff-management/staff-profile/:id"
+            component={StaffManagementProfile}
+          />
+
+          <Route
+            exact
+            path="/console/staff-management/staff-profile-edit/:id"
+            component={StaffManagementProfileEdit}
           />
 
           <Route path="/console/not-found" component={AppNotFound} />
