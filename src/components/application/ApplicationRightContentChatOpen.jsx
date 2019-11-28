@@ -4,7 +4,7 @@ import TimeAgo from "react-timeago";
 
 const ApplicationRightContentChatOpen = ({ ...props }) => {
   const {
-    staff_id,
+    _id,
     currentUser,
     chatMessages,
     handleOpenContacts,
@@ -30,7 +30,7 @@ const ApplicationRightContentChatOpen = ({ ...props }) => {
             {chatMessages.map(m => (
               <li
                 key={m._id}
-                className={staff_id === m.sender_id ? "self" : "friend"}
+                className={_id === m.sender_id ? "self" : "friend"}
               >
                 {m.message}
 

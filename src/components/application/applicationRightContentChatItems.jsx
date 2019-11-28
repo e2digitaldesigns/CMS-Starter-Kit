@@ -1,6 +1,6 @@
 import React from "react";
 
-const ApplicationRightContentChatItems = ({ c, staff_id, handleOpenChat }) => {
+const ApplicationRightContentChatItems = ({ c, _id, handleOpenChat }) => {
   return (
     <li className="chat-contact-item" onClick={() => handleOpenChat(c)}>
       <span className="letter-holder">{c.staff_name.charAt(0)}</span>
@@ -20,7 +20,7 @@ const ApplicationRightContentChatItems = ({ c, staff_id, handleOpenChat }) => {
           </span>
           <span className="message">
             <br />
-            {c.sender_id === staff_id && "you: "}
+            {c.sender_id === _id && "you: "}
             {c.last_msg !== null && c.last_msg.substring(0, 22)}
           </span>
         </span>

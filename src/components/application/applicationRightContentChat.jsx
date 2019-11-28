@@ -3,10 +3,8 @@ import jwtDecode from "jwt-decode";
 import { toast } from "react-toastify";
 // import Joi from "joi-browser";
 import Joi from "joi";
-
 import http from "../../services/httpServices";
 import socketServices from "../../services/socketServices/socketServices";
-
 import ApplicationRightContentChatContacts from "./ApplicationRightContentChatContacts";
 import ApplicationRightContentChatOpen from "./ApplicationRightContentChatOpen";
 
@@ -21,7 +19,8 @@ class ApplicationRightContentChat extends Component {
       chatBeaconId: "",
       chatStatusResetId: "",
       child_id: result.child_id,
-      staff_id: result.staff_id,
+      // staff_id: result.staff_id,
+      _id: result._id,
       chatOpen: false,
       currentUser: [],
       contactFilter: "",
@@ -37,10 +36,10 @@ class ApplicationRightContentChat extends Component {
       const contacts = [...this.state.contacts];
 
       if (data.data_type === "chat-message") {
-        const index = contacts.findIndex(c => c.staff_id === data.sender_id);
+        const index = contacts.findIndex(c => c._id === data.sender_id);
 
-        if (data.receiver_id === this.state.staff_id) {
-          if (data.sender_id === this.state.currentUser.staff_id) {
+        if (data.receiver_id === this.state._id) {
+          if (data.sender_id === this.state.currentUser._id) {
             const chatMessages = [...this.state.chatMessages, data];
             this.setState({ chatMessages });
             contacts[index].new_message_count = 0;
@@ -59,11 +58,8 @@ class ApplicationRightContentChat extends Component {
         }
       }
 
-      if (
-        data.data_type === "chat-beacon" &&
-        data.staff_id !== this.state.staff_id
-      ) {
-        const index = contacts.findIndex(c => c.staff_id === data.staff_id);
+      if (data.data_type === "chat-beacon" && data._id !== this.state._id) {
+        const index = contacts.findIndex(c => c._id === data._id);
         if (index !== -1) {
           contacts[index].online = data.status;
           contacts[index].check = new Date();
@@ -74,7 +70,7 @@ class ApplicationRightContentChat extends Component {
       if (data.data_type === "chat-ping") {
         if (
           data.child_id === this.state.child_id &&
-          data.staff_id === this.state.staff_id
+          data._id === this.state._id
         ) {
           this.chatBeacon();
         }
@@ -86,6 +82,7 @@ class ApplicationRightContentChat extends Component {
     try {
       const { data: contacts } = await http.get("staffChat");
       this.setState({ contacts });
+      console.log(contacts);
     } catch (ex) {
       toast.warning("Chat not able to load..");
     }
@@ -111,7 +108,7 @@ class ApplicationRightContentChat extends Component {
       const data = {
         data_type: "chat-ping",
         child_id: this.state.child_id,
-        staff_id: contacts[i].staff_id
+        _id: contacts[i]._id
       };
 
       socketServices.sendChatData(data);
@@ -139,7 +136,7 @@ class ApplicationRightContentChat extends Component {
       const data = {
         data_type: "chat-beacon",
         child_id: this.state.child_id,
-        staff_id: this.state.staff_id,
+        _id: this.state._id,
         status: this.props.chatAvailable
       };
 
@@ -170,7 +167,7 @@ class ApplicationRightContentChat extends Component {
   };
 
   handleSetChatMessagesSeen = async () => {
-    await http.put("staffChat/seen/" + this.state.currentUser.staff_id);
+    await http.put("staffChat/seen/" + this.state.currentUser._id);
   };
 
   handleNewMessageSubmit = async () => {
@@ -179,8 +176,8 @@ class ApplicationRightContentChat extends Component {
     try {
       const { data: chatMessageData } = await http.post("staffChat", {
         child_id: state.child_id,
-        sender_id: state.staff_id,
-        receiver_id: state.currentUser.staff_id,
+        sender_id: state._id,
+        receiver_id: state.currentUser._id,
         message: state.newChatMessage.message
       });
 
@@ -193,7 +190,7 @@ class ApplicationRightContentChat extends Component {
       const index = contacts.indexOf(currentUser);
       contacts.splice(index, 1);
       currentUser.last_msg = state.newChatMessage.message;
-      currentUser.sender_id = state.staff_id;
+      currentUser.sender_id = state._id;
       currentUser.new_messages = [];
       contacts.unshift(currentUser);
 
@@ -249,8 +246,7 @@ class ApplicationRightContentChat extends Component {
       const contacts = [...this.state.contacts];
       const index = contacts.indexOf(contact);
       contacts[index].new_message_count = 0;
-      const apiUrl =
-        "staffChat/" + this.state.staff_id + "/" + contact.staff_id;
+      const apiUrl = "staffChat/" + this.state._id + "/" + contact._id;
       const { data: chatMessages } = await http.get(apiUrl);
       this.setState({
         chatOpen: true,
@@ -285,7 +281,7 @@ class ApplicationRightContentChat extends Component {
 
   render() {
     const {
-      staff_id,
+      _id,
       contacts,
       contactFilter,
       contactFilterResults,
@@ -300,7 +296,7 @@ class ApplicationRightContentChat extends Component {
       <React.Fragment>
         <span className="tab-content-chat-messages-holder">
           <ApplicationRightContentChatOpen
-            staff_id={staff_id}
+            _id={_id}
             currentUser={currentUser}
             chatMessages={chatMessages}
             handleOpenContacts={this.handleOpenContacts}
@@ -312,8 +308,8 @@ class ApplicationRightContentChat extends Component {
 
         <span className="tab-content-chat-contact-holder">
           <ApplicationRightContentChatContacts
+            _id={_id}
             contacts={filtered}
-            staff_id={staff_id}
             handleOpenChat={this.handleOpenChat}
             contactFilter={contactFilter}
             handleContactFilter={this.handleContactFilter}

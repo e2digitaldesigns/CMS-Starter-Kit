@@ -4,8 +4,8 @@ import ApplicationRightContentChatItems from "./applicationRightContentChatItems
 
 const ApplicationRightContentChatContacts = ({ ...props }) => {
   const {
+    _id,
     contacts,
-    staff_id,
     handleOpenChat,
     contactFilter,
     handleContactFilter
@@ -31,9 +31,9 @@ const ApplicationRightContentChatContacts = ({ ...props }) => {
               .filter(o => o.online === 1)
               .map(c => (
                 <ApplicationRightContentChatItems
-                  key={c.staff_id}
+                  key={c._id}
                   c={c}
-                  staff_id={staff_id}
+                  _id={_id}
                   handleOpenChat={handleOpenChat}
                 />
               ))}
@@ -46,9 +46,9 @@ const ApplicationRightContentChatContacts = ({ ...props }) => {
               .filter(o => o.online !== 1)
               .map(c => (
                 <ApplicationRightContentChatItems
-                  key={c.staff_id}
+                  key={c._id}
                   c={c}
-                  staff_id={staff_id}
+                  _id={_id}
                   handleOpenChat={handleOpenChat}
                 />
               ))}
