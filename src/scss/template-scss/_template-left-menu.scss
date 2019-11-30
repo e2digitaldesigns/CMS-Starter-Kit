@@ -52,10 +52,10 @@ ul.left-sidebar-elements > li {
     border-style: solid;
     border-width: 4px 6px 4px 0;
     border-color: transparent $primaryColor transparent transparent;
-
     position: absolute;
-    right: 10px;
+    right: 1rem;
     margin-top: 15px;
+    transition: transform 0.5s;
   }
   > ul {
     display: none;
@@ -78,5 +78,10 @@ ul.left-sidebar-elements > li {
   }
   &.open > ul {
     display: block;
+  }
+  &.open > a.parent:after {
+    // border-width: 6px 4px 0 4px;
+    // border-color: $primaryColor transparent transparent transparent;
+    transform: rotate(-90deg);
   }
 }

@@ -170,7 +170,7 @@ class ApplicationStructure extends Component {
           staff={this.state.staff}
         />
 
-        <div className="wrapper toggle-right-menu-hide">
+        <div className="wrapper ">
           <ApplicationLeftNav />
           <ApplicationRouter />
 

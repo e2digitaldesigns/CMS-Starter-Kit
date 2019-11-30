@@ -1,0 +1,272 @@
+warning: LF will be replaced by CRLF in src/components/application/applicationRightContent.jsx.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in src/components/application/applicationRightContentChat.jsx.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in src/components/applicationHeader.jsx.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in src/components/applicationStructure.jsx.
+The file will have its original line endings in your working directory
+[1mdiff --git a/src/components/application/applicationRightContent.jsx b/src/components/application/applicationRightContent.jsx[m
+[1mindex 8d482e1..91e5f4e 100644[m
+[1m--- a/src/components/application/applicationRightContent.jsx[m
+[1m+++ b/src/components/application/applicationRightContent.jsx[m
+[36m@@ -1,82 +1,35 @@[m
+ import React from "react";[m
+[32m+[m[32mimport ApplicationRightContentHeaderItem from "./applicationRightContentHeaderItem";[m
+ import ApplicationRightContentChat from "./applicationRightContentChat";[m
+ import ApplicationRightContentCalculator from "./applicationRightContentCalculator";[m
+ import ApplicationRightContentToDoListItems from "./applicationRightContentToDoListItems";[m
+ import ApplicationRightContentSettings from "./applicationRightContentSettings";[m
+ import ApplicationRightContentNotifications from "./applicationRightContentNotifications";[m
+ [m
+[31m-const tabLinks = (e, section) => {[m
+[31m-  const tab = document.querySelector(`.tab-header-` + section);[m
+[31m-  if (tab.classList.contains("active")) return;[m
+[31m-[m
+[31m-  const tabs = document.querySelectorAll("ul.right-content-section-menu li");[m
+[31m-  const currentContent = document.querySelector(".tab-content.active");[m
+[31m-  const newContent = document.querySelector(`.tab-content-` + section);[m
+[31m-[m
+[31m-  for (let i = 0; i < tabs.length; i++) {[m
+[31m-    tabs[i].classList.remove("active");[m
+[31m-  }[m
+[31m-[m
+[31m-  tab.classList.add("active");[m
+[31m-  currentContent.classList.remove("active");[m
+[31m-  currentContent.classList.remove("tab-content-in");[m
+[31m-  currentContent.classList.add("tab-content-out");[m
+[31m-[m
+[31m-  newContent.classList.add("active");[m
+[31m-  newContent.classList.add("tab-content-in");[m
+[31m-  newContent.classList.remove("tab-content-out");[m
+[31m-};[m
+[31m-[m
+ const ApplicationRightContent = props => {[m
+[32m+[m[32m  const { staff, childId, handleSettingsChange } = props;[m
+[32m+[m
+   return ([m
+     <React.Fragment>[m
+       <div className="right-content-section">[m
+         <ul className="right-content-section-menu">[m
+[31m-          <li[m
+[31m-            className="tab-header tab-header-calculator active"[m
+[31m-            onClick={e => tabLinks(e, "calculator")}[m
+[31m-          >[m
+[31m-            <i className="fa fa-calculator"></i>[m
+[31m-          </li>[m
+[31m-[m
+[31m-          <li[m
+[31m-            className="tab-header tab-header-chat"[m
+[31m-            onClick={e => tabLinks(e, "chat")}[m
+[31m-          >[m
+[31m-            <i className="fa fa-comments"></i>[m
+[31m-          </li>[m
+[31m-[m
+[31m-          <li[m
+[31m-            className="tab-header tab-header-to-do"[m
+[31m-            onClick={e => tabLinks(e, "to-do")}[m
+[31m-          >[m
+[31m-            <i className="fa fa-list-alt"></i>[m
+[31m-          </li>[m
+[31m-[m
+[31m-          <li[m
+[31m-            className="tab-header tab-header-settings"[m
+[31m-            onClick={e => tabLinks(e, "settings")}[m
+[31m-          >[m
+[31m-            <i className="fa fa-cogs"></i>[m
+[31m-          </li>[m
+[31m-[m
+[31m-          <li[m
+[31m-            className="tab-header tab-header-notifications"[m
+[31m-            onClick={e => tabLinks(e, "notifications")}[m
+[31m-          >[m
+[31m-            <i className="fa fa-bell"></i>[m
+[31m-          </li>[m
+[32m+[m[32m          <ApplicationRightContentHeaderItem section="calculator" />[m
+[32m+[m[32m          <ApplicationRightContentHeaderItem section="chat" />[m
+[32m+[m[32m          <ApplicationRightContentHeaderItem section="todo" />[m
+[32m+[m[32m          <ApplicationRightContentHeaderItem section="settings" />[m
+[32m+[m[32m          <ApplicationRightContentHeaderItem[m
+[32m+[m[32m            section="notifications"[m
+[32m+[m[32m            status="active"[m
+[32m+[m[32m          />[m
+         </ul>[m
+ [m
+[31m-        <div className="tab-content tab-content-calculator active">[m
+[32m+[m[32m        <div className="tab-content tab-content-calculator">[m
+           <ApplicationRightContentCalculator />[m
+         </div>[m
+ [m
+         <div className="tab-content tab-content-chat">[m
+           <ApplicationRightContentChat[m
+[31m-            chatAvailable={[m
+[31m-              props.staff.applicationRightContent.settings.chatAvailable[m
+[31m-            }[m
+[32m+[m[32m            chatAvailable={staff.applicationRightContent.settings.chatAvailable}[m
+           />[m
+         </div>[m
+ [m
+[36m@@ -86,13 +39,13 @@[m [mconst ApplicationRightContent = props => {[m
+ [m
+         <div className="tab-content tab-content-settings">[m
+           <ApplicationRightContentSettings[m
+[31m-            staffSettings={props.staff.applicationRightContent.settings}[m
+[31m-            rightSettingsChange={props.handleSettingsChange}[m
+[32m+[m[32m            staffSettings={staff.applicationRightContent.settings}[m
+[32m+[m[32m            rightSettingsChange={handleSettingsChange}[m
+           />[m
+         </div>[m
+ [m
+[31m-        <div className="tab-content tab-content-notifications">[m
+[31m-          <ApplicationRightContentNotifications childId={props.childId} />[m
+[32m+[m[32m        <div className="tab-content tab-content-notifications active">[m
+[32m+[m[32m          <ApplicationRightContentNotifications childId={childId} />[m
+         </div>[m
+       </div>[m
+     </React.Fragment>[m
+[1mdiff --git a/src/components/application/applicationRightContentChat.jsx b/src/components/application/applicationRightContentChat.jsx[m
+[1mindex 6357473..8ae7224 100644[m
+[1m--- a/src/components/application/applicationRightContentChat.jsx[m
+[1m+++ b/src/components/application/applicationRightContentChat.jsx[m
+[36m@@ -82,7 +82,6 @@[m [mclass ApplicationRightContentChat extends Component {[m
+     try {[m
+       const { data: contacts } = await http.get("staffChat");[m
+       this.setState({ contacts });[m
+[31m-      console.log(contacts);[m
+     } catch (ex) {[m
+       toast.warning("Chat not able to load..");[m
+     }[m
+[1mdiff --git a/src/components/applicationHeader.jsx b/src/components/applicationHeader.jsx[m
+[1mindex 9465d59..b79c816 100644[m
+[1m--- a/src/components/applicationHeader.jsx[m
+[1m+++ b/src/components/applicationHeader.jsx[m
+[36m@@ -53,9 +53,9 @@[m [mconst ApplicationHeader = ({ handleConsoleLogOut, alertNumbers, staff }) => {[m
+             <i className="fa fa-bars" />[m
+           </li>[m
+           <li className=" display-m branding" onClick={handleConsoleLogOut}>[m
+[31m-            E2 Print Software[m
+[32m+[m[32m            CMS Starter Kit[m
+           </li>[m
+[31m-          {/* <li>[m
+[32m+[m[32m          <li>[m
+             <Link to="view-orders">[m
+               <i className="fa fa-tags" />[m
+               <span>View Orders</span>[m
+[36m@@ -66,7 +66,7 @@[m [mconst ApplicationHeader = ({ handleConsoleLogOut, alertNumbers, staff }) => {[m
+               <i className="fa fa-plus-circle" />[m
+               <span>New Order</span>[m
+             </Link>[m
+[31m-          </li> */}[m
+[32m+[m[32m          </li>[m
+           <li>[m
+             <Link to="/console/client-management/client-new">[m
+               <i className="fa fa-user" />[m
+[1mdiff --git a/src/components/applicationStructure.jsx b/src/components/applicationStructure.jsx[m
+[1mindex 4126646..31be6a4 100644[m
+[1m--- a/src/components/applicationStructure.jsx[m
+[1m+++ b/src/components/applicationStructure.jsx[m
+[36m@@ -170,7 +170,7 @@[m [mclass ApplicationStructure extends Component {[m
+           staff={this.state.staff}[m
+         />[m
+ [m
+[31m-        <div className="wrapper toggle-right-menu-hide">[m
+[32m+[m[32m        <div className="wrapper ">[m
+           <ApplicationLeftNav />[m
+           <ApplicationRouter />[m
+ [m
+[1mdiff --git a/src/components/staffManagement/staffManagementProfileEdit.jsx b/src/components/staffManagement/staffManagementProfileEdit.jsx[m
+[1mindex aab143b..f666703 100644[m
+[1m--- a/src/components/staffManagement/staffManagementProfileEdit.jsx[m
+[1m+++ b/src/components/staffManagement/staffManagementProfileEdit.jsx[m
+[36m@@ -4,14 +4,18 @@[m [mimport { PageTemplateHeader } from "./../utils/pageTemplate";[m
+ import http from "../../services/httpServices";[m
+ [m
+ class StaffManagementProfileEdit extends Component {[m
+[31m-  state = {[m
+[31m-    staffInformation: {[m
+[31m-      _id: "",[m
+[31m-      status: "",[m
+[31m-      name: "",[m
+[31m-      email: ""[m
+[31m-    }[m
+[31m-  };[m
+[32m+[m[32m  constructor(props) {[m
+[32m+[m[32m    super(props);[m
+[32m+[m
+[32m+[m[32m    this.state = {[m
+[32m+[m[32m      starterName: "",[m
+[32m+[m[32m      staffInformation: {[m
+[32m+[m[32m        name: "",[m
+[32m+[m[32m        email: "",[m
+[32m+[m[32m        status: ""[m
+[32m+[m[32m      }[m
+[32m+[m[32m    };[m
+[32m+[m[32m  }[m
+ [m
+   async componentDidMount() {[m
+     try {[m
+[36m@@ -66,7 +70,7 @@[m [mclass StaffManagementProfileEdit extends Component {[m
+                   <label htmlFor="Name">Name</label>[m
+                   <div>[m
+                     <input[m
+[31m-                      type="test"[m
+[32m+[m[32m                      type="text"[m
+                       className="form-control form-control-sm"[m
+                       name="name"[m
+                       placeholder="name..."[m
+[1mdiff --git a/src/scss/template-scss/_template-left-menu.scss b/src/scss/template-scss/_template-left-menu.scss[m
+[1mindex 6198fa8..e9148a6 100644[m
+[1m--- a/src/scss/template-scss/_template-left-menu.scss[m
+[1m+++ b/src/scss/template-scss/_template-left-menu.scss[m
+[36m@@ -52,10 +52,10 @@[m [mul.left-sidebar-elements > li {[m
+     border-style: solid;[m
+     border-width: 4px 6px 4px 0;[m
+     border-color: transparent $primaryColor transparent transparent;[m
+[31m-[m
+     position: absolute;[m
+[31m-    right: 10px;[m
+[32m+[m[32m    right: 1rem;[m
+     margin-top: 15px;[m
+[32m+[m[32m    transition: transform 0.5s;[m
+   }[m
+   > ul {[m
+     display: none;[m
+[36m@@ -79,4 +79,9 @@[m [mul.left-sidebar-elements > li {[m
+   &.open > ul {[m
+     display: block;[m
+   }[m
+[32m+[m[32m  &.open > a.parent:after {[m
+[32m+[m[32m    // border-width: 6px 4px 0 4px;[m
+[32m+[m[32m    // border-color: $primaryColor transparent transparent transparent;[m
+[32m+[m[32m    transform: rotate(-90deg);[m
+[32m+[m[32m  }[m
+ }[m
+[1mdiff --git a/src/scss/template-scss/right-section/_template-right-section-calculator.scss b/src/scss/template-scss/right-section/_template-right-section-calculator.scss[m
+[1mindex 3457be9..1f6c0d6 100644[m
+[1m--- a/src/scss/template-scss/right-section/_template-right-section-calculator.scss[m
+[1m+++ b/src/scss/template-scss/right-section/_template-right-section-calculator.scss[m
+[36m@@ -14,9 +14,10 @@[m
+ [m
+   .calculator-view {[m
+     grid-column: 1 / 5;[m
+[31m-    font-size: 1.5rem;[m
+[32m+[m[32m    font-size: 1.8rem;[m
+[32m+[m[32m    line-height: 3rem;[m
+     margin: 0.25rem;[m
+[31m-    padding: 0.25rem;[m
+[32m+[m[32m    padding: 0 0.5rem;[m
+     border: 1px solid darken($primaryBorderColor, 25%);[m
+     white-space: nowrap;[m
+     overflow: hidden;[m
+[36m@@ -39,5 +40,11 @@[m
+ @media only screen and (max-width: $mediaBreakPointMedium) {[m
+   .calculator-number-pad {[m
+     grid-template-rows: repeat(6, 35px);[m
+[32m+[m[32m    .calculator-view {[m
+[32m+[m[32m      font-size: 1.2rem;[m
+[32m+[m[32m      line-height: 1.2rem;[m
+[32m+[m[32m      margin: 0.25rem;[m
+[32m+[m[32m      padding: 0.25rem;[m
+[32m+[m[32m    }[m
+   }[m
+ }[m

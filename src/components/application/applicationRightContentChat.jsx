@@ -82,7 +82,6 @@ class ApplicationRightContentChat extends Component {
     try {
       const { data: contacts } = await http.get("staffChat");
       this.setState({ contacts });
-      console.log(contacts);
     } catch (ex) {
       toast.warning("Chat not able to load..");
     }

@@ -14,9 +14,10 @@
 
   .calculator-view {
     grid-column: 1 / 5;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
+    line-height: 3rem;
     margin: 0.25rem;
-    padding: 0.25rem;
+    padding: 0 0.5rem;
     border: 1px solid darken($primaryBorderColor, 25%);
     white-space: nowrap;
     overflow: hidden;
@@ -39,5 +40,11 @@
 @media only screen and (max-width: $mediaBreakPointMedium) {
   .calculator-number-pad {
     grid-template-rows: repeat(6, 35px);
+    .calculator-view {
+      font-size: 1.2rem;
+      line-height: 1.2rem;
+      margin: 0.25rem;
+      padding: 0.25rem;
+    }
   }
 }

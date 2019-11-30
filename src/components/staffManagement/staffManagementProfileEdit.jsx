@@ -4,14 +4,18 @@ import { PageTemplateHeader } from "./../utils/pageTemplate";
 import http from "../../services/httpServices";
 
 class StaffManagementProfileEdit extends Component {
-  state = {
-    staffInformation: {
-      _id: "",
-      status: "",
-      name: "",
-      email: ""
-    }
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      starterName: "",
+      staffInformation: {
+        name: "",
+        email: "",
+        status: ""
+      }
+    };
+  }
 
   async componentDidMount() {
     try {
@@ -66,7 +70,7 @@ class StaffManagementProfileEdit extends Component {
                   <label htmlFor="Name">Name</label>
                   <div>
                     <input
-                      type="test"
+                      type="text"
                       className="form-control form-control-sm"
                       name="name"
                       placeholder="name..."

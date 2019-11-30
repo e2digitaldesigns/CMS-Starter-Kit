@@ -53,9 +53,9 @@ const ApplicationHeader = ({ handleConsoleLogOut, alertNumbers, staff }) => {
             <i className="fa fa-bars" />
           </li>
           <li className=" display-m branding" onClick={handleConsoleLogOut}>
-            E2 Print Software
+            CMS Starter Kit
           </li>
-          {/* <li>
+          <li>
             <Link to="view-orders">
               <i className="fa fa-tags" />
               <span>View Orders</span>
@@ -66,7 +66,7 @@ const ApplicationHeader = ({ handleConsoleLogOut, alertNumbers, staff }) => {
               <i className="fa fa-plus-circle" />
               <span>New Order</span>
             </Link>
-          </li> */}
+          </li>
           <li>
             <Link to="/console/client-management/client-new">
               <i className="fa fa-user" />
